@@ -2,40 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Valentine 💖</title>
+  <title>For Baby 💖</title>
   <style>
     body {
       height: 100vh;
+      margin: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      overflow: hidden;
+      text-align: center;
     }
 
     h1 {
       color: #b30059;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #800040;
       margin-bottom: 30px;
     }
 
     .buttons {
       position: relative;
-      width: 300px;
-      height: 150px;
+      width: 320px;
+      height: 160px;
     }
 
     button {
-      padding: 12px 24px;
+      padding: 14px 28px;
       font-size: 18px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
     }
 
     #yes {
       background-color: #ff4d6d;
       color: white;
+      z-index: 2;
     }
 
     #no {
@@ -43,11 +52,31 @@
       background-color: #555;
       color: white;
     }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      color: rgba(255, 0, 100, 0.7);
+      font-size: 20px;
+      animation: float 6s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <h1>Will you be my Valentine? 💕</h1>
+  <h1>Hey Baby 💕</h1>
+  <h2>Will you be my Valentine? 🌹</h2>
 
   <div class="buttons">
     <button id="yes" onclick="yesClicked()">YES 💖</button>
@@ -57,7 +86,7 @@
   <script>
     function moveNo() {
       const noBtn = document.getElementById("no");
-      const maxX = 250;
+      const maxX = 260;
       const maxY = 120;
 
       const x = Math.random() * maxX;
@@ -69,10 +98,25 @@
 
     function yesClicked() {
       document.body.innerHTML = `
-        <h1>Yayyy! 💘🥰</h1>
-        <p style="font-size:22px;">You just made my day ❤️</p>
+        <h1>Yayyy Baby 💘🥰</h1>
+        <h2>You just made me the happiest person ❤️</h2>
+        <p style="font-size:22px;">Can’t wait to celebrate Valentine’s with you 🌹✨</p>
       `;
     }
+
+    // Create floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (16 + Math.random() * 20) + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 6000);
+    }, 400);
   </script>
 
 </body>
